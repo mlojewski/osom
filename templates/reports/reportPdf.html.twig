@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<style>
+	*{ font-family: DejaVu Sans; font-size: 12px;}
+	body {
+		position: relative;
+		background-color: #fff;
+	}
+	table {
+		width: 100%;
+		text-align: center;
+		padding: 10px;
+	}
+	th {
+		background-color: #00a65a;
+		color: whitesmoke;
+		border-bottom: 1px solid black;
+	}
+	td {
+		border-bottom: 1px solid black;
+	}
+
+</style>
+<p style="text-align: center">
+	Raport z głosowania nad projektem <b>{{ resolutionProject.number }}</b>. Deadline głosowania - {{ resolutionProject.deadline | date('Y-m-d H:i:s') }} <br>
+</p>
+
+
+	{% if verification != null %}
+		Głosowanie zakończone sukcesem. Wynik głosowania:
+		{% if verification > 0 %} <u>Projekt przeszedł</u> {% elseif verification < 0 %} <u>Projekt nie przeszedł </u> {% endif %}
+
+		{% else %}
+		Głosowanie nieważne.
+	{% endif %}
+
+<br>Oddane głosy:
+	<table>
+		<tr>
+			<th>
+				Typ głosu
+			</th>
+			<th>
+				Data oddania
+			</th>
+			<th>
+				Autor
+			</th>
+			<th>
+				Funkcja
+			</th>
+			<th>
+				IP autora
+			</th>
+		</tr>
+		{% for vote in votes %}
+			<tr>
+				<td> {{ vote.voteType.type }}</td>
+				<td> {{ vote.timestamp | date('Y-m-d h:i:s') }}</td>
+				<td> {{ vote.voteAuthor.lastName }}</td>
+				<td> {{ vote.voteAuthor.function.name }}</td>
+				<td> {{ vote.ip }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+		Komentarze:<br/>
+		<table>
+			<tr>
+				<th>
+					Data dodania
+				</th>
+				<th>
+					Treść
+				</th>
+				<th>
+					Autor
+				</th>
+			</tr>
+			{% for comment in comments %}
+			<tr>
+				<td>{{ comment.createdAt |date('Y-m-d H:i:s') }}</td>
+				<td>{{ comment.content }}</td>
+				<td>{{ comment.commentAuthor.name }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+
+
+

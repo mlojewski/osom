@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>Resolution</title>
+
+<style>
+	*{ font-family: DejaVu Sans; font-size: 12px;}
+
+	p.myHeadline {
+		text-align: center;
+		font-size: 16px;
+	}
+	p.myTitle {
+		text-align: center;
+		font-size: 14px;
+	}
+</style>
+	</head>
+	<body>
+<p class="myHeadline">
+ <b>Uchwała nr {{ resolution.number }} z dnia {{ resolution.date | date('d-m-Y')}}. </b><br/>
+<br/>
+</p>
+<p class="myTitle">
+<i>{{ resolution.title }}</i><br>
+</p>
+<p style="text-align: justify">
+	{{ resolution.content }} <br>
+	<br>
+</p>
+
+
+
+	Sekretarz Generalny:<br>
+	<br>
+	......................................
+</body>
+</html>

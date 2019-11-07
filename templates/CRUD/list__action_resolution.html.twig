@@ -1,0 +1,6 @@
+{%  if object.deadline < date() %}
+<a class="btn btn-success" href="{{ admin.generateObjectUrl('generate-resolution', object) }}" target="_blank">Generuj uchwałę</a>
+{% endif %}
+
+
+

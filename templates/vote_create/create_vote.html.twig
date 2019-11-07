@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello VoteCreateController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    {% if vote == null %}
+    Głos oddany po terminie - nie będzie brany pod uwagę.
+        {% else %}
+        {% if  new  == true %}
+        <h1>Głos oddany ! ✅</h1> <br/>
+        Głos "{{ vote.voteType.type }}" został oddany na projekt numer {{ resolutionProject.number }}. <br/> Głos oddano {{ vote.timestamp | date('Y-m-d H:i:s')}}
+        {% else %}
+        <h1>Głos był już wcześniej oddany ✅</h1><br/>
+        {{ vote.timestamp|date('Y-m-d h:i:s') }}
+        {% endif %}
+    {% endif %}
+</div>
+    <br>
+    <a href="{{ path('logout') }}">Wyloguj</a>
+{% endblock %}

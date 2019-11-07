@@ -1,0 +1,23 @@
+sonata_admin:
+    title: 'OSOM'
+    dashboard:
+        groups:
+            base:
+                label: Panel administracyjny
+                items:
+                    - App\Admin\ResolutionProjectAdmin
+                    - App\Admin\BoardMemberFunctionAdmin
+                    - App\Admin\VoteTypeAdmin
+                roles: [ROLE_ADMIN]
+            user:
+                label: Panel użytkowników
+                items:
+                    - App\Admin\UserAdmin
+                roles: [ROLE_ADMIN]
+        blocks:
+            - { type: sonata.admin.block.admin_list, position: left }
+
+sonata_block:
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]

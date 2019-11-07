@@ -1,0 +1,14 @@
+includes:
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/timeweb/phpstan-enum/extension.neon
+parameters:
+    path:
+        - src
+    level: 6
+    autoload_files:
+        - vendor/autoload.php
+    excludes_analyse:
+        - %rootDir%/../../../src/Migrations/
+    symfony:
+        container_xml_path: %rootDir%/../../../var/cache/dev/srcApp_KernelDevDebugContainer.xml

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<form id="new_comment" method="post" action="{{ url('comment_create', {authorId: authorId, projectId: projectId}) }}">
+		<input type="hidden" name="authorId" value="{{ authorId }}"/>
+		<input type="hidden" name="projectId" value="{{ projectId }}"/>
+		<input type="text" name="content" value="" required/>
+		<input type="submit" class="btn btn-success" value="Dodaj komentarz">
+
+	</form>
+	<a href="{{ path('logout') }}">Wyloguj</a>
+
+{% endblock %}

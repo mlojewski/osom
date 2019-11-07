@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nowy projekt uchwały{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Projekt uchwały nr {{ project.number }} </h1> <br/>
+
+    <h2>{{ project.title }}</h2>
+    <h3>  Treść projektu </h3> <br/>
+
+    <h4>{{ project.content }}</h4><br/>
+
+    Deadline głosowania: {{ project.deadline|date('Y-m-d h:i:s') }}<br/>
+
+    <a href="{{ url('vote_create', {projectId: projectId, memberId: member, voteTypeId: 1}) }}">
+        <button class="btn btn-success"> Za</button>
+    </a>
+    <a href="{{ url('vote_create', {projectId: projectId, memberId: member, voteTypeId: 2}) }}">
+        <button class="btn btn-danger"> Przeciw</button>
+    </a>
+    <a href="{{ url('vote_create', {projectId: projectId, memberId: member, voteTypeId: 3}) }}">
+        <button class="btn btn-info"> Wstrzymuję się</button>
+    </a>
+    <br>
+    <a href="{{ url('comment_form', {projectId: projectId, authorId: member}) }}">
+        <button class="btn btn-default"> Dodaj komentarz</button>
+    </a>
+
+</div>
+{% endblock %}
