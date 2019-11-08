@@ -17,19 +17,23 @@ class VoteCreator
     private $userRepository;
     
     public function __construct(
-        EntityManagerInterface $entityManager,
+        EntityManagerInterface      $entityManager,
         ResolutionProjectRepository $resolutionProjectRepository,
-        VoteTypeRepository $voteTypeRepository,
-        UserRepository $userRepository
+        VoteTypeRepository          $voteTypeRepository,
+        UserRepository              $userRepository
     ) {
-        $this->entityManager = $entityManager;
-        $this->resolutionProjectRepository = $resolutionProjectRepository;
-        $this->voteTypeRepository = $voteTypeRepository;
-        $this->userRepository = $userRepository;
+        $this->entityManager                = $entityManager;
+        $this->resolutionProjectRepository  = $resolutionProjectRepository;
+        $this->voteTypeRepository           = $voteTypeRepository;
+        $this->userRepository               = $userRepository;
     }
     
-    public function createVote(string $projectId, string $memberId, string $voteTypeId, Request $request)
-    {
+    public function createVote(
+        string $projectId,
+        string $memberId,
+        string $voteTypeId,
+        Request $request
+    ) {
 
         $vote = new Vote();
         $vote->setResolutionProject($this->resolutionProjectRepository->findOneBy(['id' => $projectId]));

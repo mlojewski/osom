@@ -1,14 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<style>
+	.moj-form {
+		padding: 15px 30px 0px 30px;
+	}
+	.moj-textarea {
+		padding: 30px 30px 0px 30px;
+	}
+	p {
+		padding: 40px;
+	}
+</style>
 
-	<form id="new_comment" method="post" action="{{ url('comment_create', {authorId: authorId, projectId: projectId}) }}">
+		<label class="moj-textarea">
+			<textarea name="content" cols="50" rows="4" placeholder="Wpisz komentarz" form="new_comment"></textarea>
+		</label>
+	<form class="moj-form" id="new_comment" method="post" action="{{ url('comment_create', {authorId: authorId, projectId: projectId}) }}">
 		<input type="hidden" name="authorId" value="{{ authorId }}"/>
 		<input type="hidden" name="projectId" value="{{ projectId }}"/>
-		<input type="text" name="content" value="" required/>
 		<input type="submit" class="btn btn-success" value="Dodaj komentarz">
-
 	</form>
+
+	<br>
+	<p>
 	<a href="{{ path('logout') }}">Wyloguj</a>
+	</p>
+
 
 {% endblock %}

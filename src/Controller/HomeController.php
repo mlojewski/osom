@@ -16,12 +16,12 @@ class HomeController extends AbstractController
     
     public function __construct(
         ResolutionProjectRepository $resolutionProjectRepository,
-        ResolutionRepository $resolutionRepository,
-        VoteVerificator $voteVerificator
+        ResolutionRepository        $resolutionRepository,
+        VoteVerificator             $voteVerificator
     ) {
-        $this->resolutionProjectRepository = $resolutionProjectRepository;
-        $this->resolutionRepository = $resolutionRepository;
-        $this->voteVerificator = $voteVerificator;
+        $this->resolutionProjectRepository  = $resolutionProjectRepository;
+        $this->resolutionRepository         = $resolutionRepository;
+        $this->voteVerificator              = $voteVerificator;
     }
     
     /**
@@ -29,12 +29,12 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        $resolutions = $this->resolutionRepository->findAll();
+        $resolutions        = $this->resolutionRepository->findAll();
         $resolutionProjects = $this->resolutionProjectRepository->findAll();
 
         return $this->render('home/index.html.twig', [
-            'resolutions' => $resolutions,
-            'resolutionProjects' => $resolutionProjects
+            'resolutions'           => $resolutions,
+            'resolutionProjects'    => $resolutionProjects
         ]);
     }
 }

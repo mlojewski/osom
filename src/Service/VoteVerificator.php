@@ -11,10 +11,10 @@ class VoteVerificator
     private $resolutionProjectRepository;
     public function __construct(
         ResolutionProjectRepository $resolutionProjectRepository,
-        UserRepository $userRepository
+        UserRepository              $userRepository
     ) {
-        $this->userRepository = $userRepository;
-        $this->resolutionProjectRepository = $resolutionProjectRepository;
+        $this->userRepository               = $userRepository;
+        $this->resolutionProjectRepository  = $resolutionProjectRepository;
     }
     
     public function verifyVoting(string $resolutionProjectId)
@@ -37,6 +37,7 @@ class VoteVerificator
             return null;
         }
     }
+    //TODO - rozszerzenie do twiga - używać w twigu tego serwisu a to powyżej przerobić na true/false
     
     public function checkValidity($votes)
     {

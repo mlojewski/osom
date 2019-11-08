@@ -12,8 +12,8 @@ class CreateUserHandler
     private $entityManager;
     private $encoder;
     public function __construct(
-        EntityManagerInterface $entityManager,
-        UserPasswordEncoderInterface $encoder
+        EntityManagerInterface          $entityManager,
+        UserPasswordEncoderInterface    $encoder
     ) {
         $this->entityManager = $entityManager;
         $this->encoder       = $encoder;

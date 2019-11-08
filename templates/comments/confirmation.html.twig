@@ -1,7 +1,15 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-Komentarz dodano<br/>
+	<style>
+		p {
+			padding: 40px;
+		}
+	</style>
+	<p>
+		Komentarz dodano<br/>
 
-<a href="{{ path('logout') }}">Wyloguj</a>
+		<a href="{{ path('logout') }}">Wyloguj</a>
+	</p>
+
 
 {% endblock %}

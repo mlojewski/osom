@@ -3,30 +3,42 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <style>
+        .moj-form {
+            width: 50%;
+            position: relative;
+            padding: 40px;
+        }
+        .remember {
+            padding: 10px;
+        }
+    </style>
+<p>
+    <form class="moj-form" method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Panel logowania</h1>
-    <label for="inputEmail" class="sr-only">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <h1 class="h3 mb-3 font-weight-normal">Panel logowania</h1>
+        <label for="inputEmail" class="sr-only">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus >
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Hasło" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
 
         <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Zapamiętaj mnie
+            <label class="remember">
+                <input  type="checkbox" name="_remember_me"> Zapamiętaj mnie
             </label>
         </div>
 
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Zaloguj
-    </button>
-</form>
+        <button class="btn btn-lg btn-primary" type="submit">
+            Zaloguj
+        </button>
+    </form>
+</p>
 {% endblock %}

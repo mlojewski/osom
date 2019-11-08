@@ -9,30 +9,28 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CommentCreateController extends AbstractController
 {
-    private $coder;
+    
+    //TODO comment controller i metoda create a nie commment create controller
     private $entityManager;
     private $resolutionProjectRepository;
     private $mailer;
     private $userRepository;
     
     public function __construct(
-        ParameterCoder $coder,
-        EntityManagerInterface $entityManager,
+        EntityManagerInterface      $entityManager,
         ResolutionProjectRepository $resolutionProjectRepository,
-        \Swift_Mailer $mailer,
-        UserRepository $userRepository
+        \Swift_Mailer               $mailer,
+        UserRepository              $userRepository
     ) {
-        $this->coder = $coder;
-        $this->entityManager = $entityManager;
-        $this->resolutionProjectRepository = $resolutionProjectRepository;
-        $this->mailer = $mailer;
-        $this->userRepository = $userRepository;
+        $this->entityManager                = $entityManager;
+        $this->resolutionProjectRepository  = $resolutionProjectRepository;
+        $this->mailer                       = $mailer;
+        $this->userRepository               = $userRepository;
     }
     
     /**
@@ -46,7 +44,7 @@ class CommentCreateController extends AbstractController
             'comments/create_comment_form.html.twig',
             [
                 'projectId' => $projectId,
-                'authorId' => $authorId
+                'authorId'  => $authorId
             ]
         );
     }
@@ -57,8 +55,8 @@ class CommentCreateController extends AbstractController
      */
     public function createComment(Request $request)
     {
-        $sentProjectId = $this->coder->decode($request->get('projectId'));
-        $sentAuthorId = $this->coder->decode($request->get('authorId'));
+        $sentProjectId = $request->get('projectId');
+        $sentAuthorId  = $request->get('authorId');
         
         $comment = new Comment();
         $comment->setCreatedAt(new \DateTime());

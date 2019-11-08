@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PdfController extends AbstractController
 {
+    //TODO nie w serwisach
     public function generatePdf(string $route, array $parameters, string $name): void
     {
         $pdfOptions = new Options();
@@ -18,6 +19,7 @@ class PdfController extends AbstractController
             $route,
             $parameters
         );
+        
         $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
         $domPdf->loadHtml($html);
 

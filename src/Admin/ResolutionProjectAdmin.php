@@ -2,7 +2,7 @@
 
 namespace App\Admin;
 
-use App\Controller\ResolutionProjectController;
+use App\Service\Mailer;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -15,17 +15,14 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 class ResolutionProjectAdmin extends AbstractAdmin
 {
     private $mailer;
-    private $resolutionProjectController;
     public function __construct(
         $code,
         $class,
         $baseControllerName,
-        \Swift_Mailer $mailer,
-        ResolutionProjectController $resolutionProjectController
+        Mailer $mailer
     ) {
         parent::__construct($code, $class, $baseControllerName);
         $this->mailer = $mailer;
-        $this->resolutionProjectController = $resolutionProjectController;
     }
     
     protected function configureFormFields(FormMapper $formMapper)
@@ -127,12 +124,13 @@ class ResolutionProjectAdmin extends AbstractAdmin
     public function postUpdate($resolutionProject)
     {
         if ($resolutionProject->getIsPublished() === true) {
-            $this->resolutionProjectController->sendToRecipients($resolutionProject->getId());
+            $this->mailer->sendToRecipients($resolutionProject->getId());
         }
     }
     
     public function configureRoutes(RouteCollection $collection)
     {
+//        dd($this);
         $collection->add('generateReport', 'generate-report/'.$this->getRouterIdParameter());
         $collection->add('generate-resolution', 'generate-resolution/'.$this->getRouterIdParameter());
     }

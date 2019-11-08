@@ -15,8 +15,11 @@ class ResolutionNumberCreator
     public function createNewRepositoryNumber()
     {
         $date = new \DateTime();
-        $year = $date->format('Y');
+        
+        $year  = $date->format('Y');
         $month = $date->format('m');
+    
+        $lastRepositoryNumber = $this->resolutionRepository->getLatestResolution();
         
         if (empty($lastRepositoryNumber)) {
             return '1/'.$month.'/'.$year;
@@ -25,6 +28,7 @@ class ResolutionNumberCreator
         }
         
         $numberParts = explode("/", $lastRepositoryNumber->getNumber());
+    
         $switcher = $this->checkSwitch($numberParts);
         if ($switcher == true) {
             return '1/'.$month.'/'.$year;
@@ -37,8 +41,10 @@ class ResolutionNumberCreator
     public function checkSwitch(array $number): bool
     {
         $date = new \DateTime();
+        
         $year = $date->format('Y');
         $month = $date->format('m');
+        
         if ($number[2] === $year) {
             if ($number[1] === $month) {
                 return false;

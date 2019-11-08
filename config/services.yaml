@@ -53,3 +53,8 @@ services:
     App\Service\Command\Handler\CreateUserHandler:
         tags:
             - { name: tactician.handler, typehints: true }
+    
+    App\Twig\VoteExtension:
+        tags:
+            - { name: twig.extension }
+        public: true

@@ -27,23 +27,23 @@ class ReportGeneratorController extends CRUDController
     private $commentRepository;
     
     public function __construct(
-        VoteRepository $voteRepository,
-        VoteVerificator $voteVerificator,
+        VoteRepository              $voteRepository,
+        VoteVerificator             $voteVerificator,
         ResolutionProjectRepository $resolutionProjectRepository,
-        ResolutionRepository $resolutionRepository,
-        EntityManagerInterface $entityManager,
-        ResolutionNumberCreator $resolutionNumberCreator,
-        PdfController $pdfCreator,
-        CommentRepository $commentRepository
+        ResolutionRepository        $resolutionRepository,
+        EntityManagerInterface      $entityManager,
+        ResolutionNumberCreator     $resolutionNumberCreator,
+        PdfController               $pdfCreator,
+        CommentRepository           $commentRepository
     ) {
-        $this->voteRepository = $voteRepository;
-        $this->voteVerificator = $voteVerificator;
-        $this->resolutionProjectRepository = $resolutionProjectRepository;
-        $this->resolutionRepository = $resolutionRepository;
-        $this->entityManager = $entityManager;
-        $this->resolutionNumberCreator = $resolutionNumberCreator;
-        $this->pdfCreator = $pdfCreator;
-        $this->commentRepository = $commentRepository;
+        $this->voteRepository               = $voteRepository;
+        $this->voteVerificator              = $voteVerificator;
+        $this->resolutionProjectRepository  = $resolutionProjectRepository;
+        $this->resolutionRepository         = $resolutionRepository;
+        $this->entityManager                = $entityManager;
+        $this->resolutionNumberCreator      = $resolutionNumberCreator;
+        $this->pdfCreator                   = $pdfCreator;
+        $this->commentRepository            = $commentRepository;
     }
     
     /**
@@ -53,18 +53,18 @@ class ReportGeneratorController extends CRUDController
      */
     public function generateReportAction(string $id)
     {
-        $votes = $this->voteRepository->getVotesByProjectId($id);
-        $voteVerification = $this->voteVerificator->verifyVoting($id);
-        $resolutionProject = $this->resolutionProjectRepository->findOneBy(['id' => $id]);
-        $comments = $this->commentRepository->getAllCommentsByResolutionProjectId($id);
+        $votes              = $this->voteRepository->getVotesByProjectId($id);
+        $voteVerification   = $this->voteVerificator->verifyVoting($id);
+        $resolutionProject  = $this->resolutionProjectRepository->findOneBy(['id' => $id]);
+        $comments           = $this->commentRepository->getAllCommentsByResolutionProjectId($id);
 
         $this->pdfCreator->generatePdf(
             'reports/reportPdf.html.twig',
             [
-                'votes' => $votes,
-                'verification' => $voteVerification,
+                'votes'             => $votes,
+                'verification'      => $voteVerification,
                 'resolutionProject' => $resolutionProject,
-                'comments' => $comments
+                'comments'          => $comments
             ],
             'Raport'
         );
@@ -76,9 +76,9 @@ class ReportGeneratorController extends CRUDController
      */
     public function generateResolutionAction(string $id)
     {
-        $resolutionProject = $this->resolutionProjectRepository->findOneBy(['id' => $id]);
-        $resolutions = $this->resolutionRepository->findAll();
-        $n = 1;
+        $resolutionProject  = $this->resolutionProjectRepository->findOneBy(['id' => $id]);
+        $resolutions        = $this->resolutionRepository->findAll();
+        
         $titles = [];
         
         foreach ($resolutions as $resolution) {
