@@ -23,7 +23,7 @@ class VoteExtension extends AbstractExtension
     
     public function verifyResolutionCreation($id)
     {
-        if ($this->voteVerificator->verifyVoting($id) === null) {
+        if ($this->voteVerificator->verifyVoting($id) === null || $this->voteVerificator->verifyVoting($id) == 0 ) {
             return false;
         }
         return true;

@@ -37,7 +37,6 @@ class VoteVerificator
             return null;
         }
     }
-    //TODO - rozszerzenie do twiga - używać w twigu tego serwisu a to powyżej przerobić na true/false
     
     public function checkValidity($votes)
     {

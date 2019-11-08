@@ -1,6 +1,6 @@
 {% if checkVote(object.id) == true %}
 	{%  if object.deadline < date() %}
-	<a class="btn btn-success" href="{{ admin.generateObjectUrl('generate-resolution', object) }}" target="_blank">Generuj uchwałę</a>
+	<a class="btn btn-success" href="{{ admin.generateObjectUrl('generate-resolution', object) }}" target="_blank">Drukuj uchwałę</a>
 	{% endif %}
 {% endif %}
 
