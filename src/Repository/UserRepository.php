@@ -19,10 +19,13 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
     
-    public function getAllEmails(): array
+    public function getAllEmails(int $organizationId): array
     {
         $resultArr = $this->createQueryBuilder('user')
             ->select('user.email')
+            ->leftJoin('user.organization', 'organization')
+            ->andWhere('organization.id = :id')
+            ->setParameter('id', $organizationId)
             ->getQuery()
             ->getResult();
         
@@ -33,5 +36,16 @@ class UserRepository extends ServiceEntityRepository
             }
         }
         return $result;
+    }
+    
+    public function countAllOrganizationMembers(int $organizationId): int
+    {
+        return $this->createQueryBuilder('user')
+            ->select('count(user)')
+            ->leftJoin('user.organization', 'organization')
+            ->andWhere('organization.id = :id')
+            ->setParameter('id', $organizationId)
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 }

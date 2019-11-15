@@ -60,6 +60,12 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="commentAuthor")
      */
     private $comments;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organization", inversedBy="user")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $organization;
     
 
     public function __construct()
@@ -246,6 +252,18 @@ class User implements UserInterface
                 $comment->setCommentAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOrganization(): ?Organization
+    {
+        return $this->organization;
+    }
+
+    public function setOrganization(?Organization $organization): self
+    {
+        $this->organization = $organization;
 
         return $this;
     }

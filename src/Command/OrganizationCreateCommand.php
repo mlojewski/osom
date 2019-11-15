@@ -2,16 +2,16 @@
 
 namespace App\Command;
 
-use App\Service\Command\CreateUserCommand;
+use App\Service\Command\CreateOrganizationCommand;
 use League\Tactician\CommandBus;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class UserCreateCommand extends Command
+class OrganizationCreateCommand extends Command
 {
-    protected static $defaultName = 'app:user:create';
+    protected static $defaultName = 'app:organization:create';
     
     private $commandBus;
     
@@ -24,22 +24,19 @@ class UserCreateCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setDescription('Add a short description for your command')
+            ->setDescription('Create the organization')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-        $userEmail = $io->ask('Podaj email użytkownika');
-        $userName  = $io->ask('Podaj imię użytkownika');
-        $userLastName = $io->ask('Podaj nazwisko użytkownika');
-        $userPassword = $io->askHidden('Podaj hasło');
-        $userRole = $io->ask('Wpisz rolę użytkownika');
+        $organizationEmail = $io->ask('Podaj email organizacji');
+        $organizationName  = $io->ask('Podaj nazwę organizacji');
         
-        $command = new CreateUserCommand($userEmail, $userPassword, $userRole, $userName, $userLastName);
+        $command = new CreateOrganizationCommand($organizationEmail, $organizationName);
         $this->commandBus->handle($command);
 
-        $io->success('Stworzono użytkownika o adresie: '.$userEmail);
+        $io->success('Stworzono użytkownika o adresie: '.$organizationEmail);
     }
 }

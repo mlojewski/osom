@@ -12,9 +12,10 @@
     <h1>Projekt uchwały nr {{ project.number }} </h1> <br/>
 
     <h2>{{ project.title }}</h2>
-    <h3>  Treść projektu </h3> <br/>
+    <br>
+    <h5><u>  Treść projektu </u></h5> <br/>
 
-    <h4>{{ project.content }}</h4><br/>
+    <h4>{{ project.content | raw }}</h4><br/>
 
     Deadline głosowania: {{ project.deadline|date('Y-m-d h:i:s') }}<br/>
 
@@ -28,8 +29,9 @@
         <button class="btn btn-info"> Wstrzymuję się</button>
     </a>
     <br>
+    <br>
     <a href="{{ url('comment_form', {projectId: projectId, authorId: member}) }}">
-        <button class="btn btn-default"> Dodaj komentarz</button>
+        <button class="btn btn-warning"> Dodaj komentarz</button>
     </a>
 
 </div>

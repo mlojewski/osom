@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Coder\ParameterCoder;
 use App\Entity\Comment;
+use App\Repository\OrganizationRepository;
 use App\Repository\ResolutionProjectRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,17 +20,20 @@ class CommentCreateController extends AbstractController
     private $resolutionProjectRepository;
     private $mailer;
     private $userRepository;
+    private $organizationRepository;
     
     public function __construct(
         EntityManagerInterface      $entityManager,
         ResolutionProjectRepository $resolutionProjectRepository,
         \Swift_Mailer               $mailer,
-        UserRepository              $userRepository
+        UserRepository              $userRepository,
+        OrganizationRepository      $organizationRepository
     ) {
         $this->entityManager                = $entityManager;
         $this->resolutionProjectRepository  = $resolutionProjectRepository;
         $this->mailer                       = $mailer;
         $this->userRepository               = $userRepository;
+        $this->organizationRepository       = $organizationRepository;
     }
     
     /**
@@ -68,7 +71,11 @@ class CommentCreateController extends AbstractController
         $this->entityManager->flush();
         
         $this->sendToAll(
-            $this->userRepository->getAllEmails(),
+            $this->userRepository->getAllEmails(
+                $this->resolutionProjectRepository->findOneBy(
+                    ['id' => $request->request->get('projectId')]
+                )->getOrganization()->getId()
+            ),
             $comment,
             $request->request->get('projectId'),
             $request->request->get('authorId')
