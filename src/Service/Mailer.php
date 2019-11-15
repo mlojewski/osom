@@ -23,10 +23,10 @@ class Mailer
         $this->mailerInterface              = $mailerInterface;
     }
     
-    public function sendToRecipients(string $id)
+    public function sendToRecipients(string $id, int $organizationId)
     {
         $project = $this->resolutionProjectRepository->findOneBy(['id' => $id]);
-        $members = $this->userRepository->getAllEmails();
+        $members = $this->userRepository->getAllEmails($organizationId);
         
         foreach ($members as $member) {
             $message = (new TemplatedEmail())

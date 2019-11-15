@@ -23,7 +23,7 @@ class VoteVerificator
         
         $votes = $resolutionProject->getVotes();
 
-        if ($this->checkValidity($votes) == true) {
+        if ($this->checkValidity($votes, $resolutionProject) == true) {
             $voteResult = 0;
             foreach ($votes as $vote) {
                 if ($vote->getVoteType()->getType() === "Za") {
@@ -38,9 +38,9 @@ class VoteVerificator
         }
     }
     
-    public function checkValidity($votes)
+    public function checkValidity($votes, $resolutionProject)
     {
-        if ($votes->count() > count($this->userRepository->findAll()) / 2) {
+        if ($votes->count() > $this->userRepository->countAllOrganizationMembers($resolutionProject->getOrganization()->getId()) / 2) {
             return true;
         }
         return false;

@@ -37,7 +37,7 @@ class VoteCreateController extends AbstractController
         $resolutionProject = $this->resolutionProjectRepository->findOneBy(['id' => $projectId]);
         
         $now = new \DateTime();
-        
+
         if ($this->voteRepository->getVote($projectId, $memberId) === null) {
             if ($resolutionProject->getDeadline() > $now) {
                 $vote = $this->voteCreator->createVote($projectId, $memberId, $voteTypeId, $request);
