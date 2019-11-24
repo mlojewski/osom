@@ -64,6 +64,11 @@ class ResolutionProject
      */
     private $organization;
 
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $targetGroup;
+
     public function __construct()
     {
         $this->votes = new ArrayCollection();
@@ -224,6 +229,18 @@ class ResolutionProject
     public function setOrganization(?Organization $organization): self
     {
         $this->organization = $organization;
+
+        return $this;
+    }
+
+    public function getTargetGroup(): ?string
+    {
+        return $this->targetGroup;
+    }
+
+    public function setTargetGroup(string $targetGroup): self
+    {
+        $this->targetGroup = $targetGroup;
 
         return $this;
     }

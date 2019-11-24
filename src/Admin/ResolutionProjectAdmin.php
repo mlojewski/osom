@@ -3,7 +3,6 @@
 namespace App\Admin;
 
 use App\Event\ResolutionProjectFormFilled;
-use App\Listener\ResolutionProjectFormFilledListener;
 use App\Repository\OrganizationRepository;
 use App\Service\Mailer;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
@@ -12,9 +11,9 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\Form\Type\DateTimePickerType;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -78,6 +77,17 @@ class ResolutionProjectAdmin extends AbstractAdmin
                 ]
             )
             ->add(
+                'targetGroup',
+                ChoiceType::class,
+                [
+                    'choices' => [
+                        'Zarząd'  => 'ROLE_BOARD',
+                        'Wszyscy' => 'ALL'
+                    ],
+                    'label' => 'Wybierz grupę docelową'
+                ]
+            )
+            ->add(
                 'isPublished',
                 CheckboxType::class,
                 [
@@ -105,13 +115,6 @@ class ResolutionProjectAdmin extends AbstractAdmin
                     'label' => ' Tytuł'
                 ]
             )
-//            ->add(
-//                'content',
-//                null,
-//                [
-//                    'label' => 'treść projektu uchwały'
-//                ]
-//            )
             ->add(
                 'deadline',
                 null,
@@ -154,7 +157,8 @@ class ResolutionProjectAdmin extends AbstractAdmin
         if ($resolutionProject->getIsPublished() === true) {
             $this->mailer->sendToRecipients(
                 $resolutionProject->getId(),
-                $this->tokenStorage->getToken()->getUser()->getOrganization()->getId()
+                $this->tokenStorage->getToken()->getUser()->getOrganization()->getId(),
+                $resolutionProject->getTargetGroup()
             );
         }
     }
