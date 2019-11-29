@@ -36,6 +36,11 @@ class Resolution
      */
     private $title;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\ResolutionProject", mappedBy="resolution", cascade={"persist", "remove"})
+     */
+    private $resolutionProject;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +90,24 @@ class Resolution
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getResolutionProject(): ?ResolutionProject
+    {
+        return $this->resolutionProject;
+    }
+
+    public function setResolutionProject(?ResolutionProject $resolutionProject): self
+    {
+        $this->resolutionProject = $resolutionProject;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newResolution = null === $resolutionProject ? null : $this;
+        if ($resolutionProject->getResolution() !== $newResolution) {
+            $resolutionProject->setResolution($newResolution);
+        }
 
         return $this;
     }

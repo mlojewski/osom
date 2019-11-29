@@ -38,6 +38,17 @@ class Organization
      */
     private $resolutionProjects;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Media", inversedBy="organizations")
+     */
+    private $logo;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Media", inversedBy="organizations")
+     */
+    private $footer;
+    
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -139,4 +150,29 @@ class Organization
 
         return $this;
     }
+
+    public function getLogo(): ?Media
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?Media $logo): self
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    public function getFooter(): ?Media
+    {
+        return $this->footer;
+    }
+
+    public function setFooter(?Media $footer): self
+    {
+        $this->footer = $footer;
+
+        return $this;
+    }
+    
 }

@@ -50,6 +50,12 @@ services:
             - {name: sonata.admin, manager_type: orm, label: Użytkownicy}
         public: true
         
+    App\Admin\OrganizationAdmin:
+        arguments: [~, App\Entity\Organization, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, label: Organizacje}
+        public: true
+        
     App\Service\Command\Handler\CreateUserHandler:
         tags:
             - { name: tactician.handler, typehints: true }

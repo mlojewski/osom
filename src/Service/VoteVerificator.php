@@ -40,7 +40,10 @@ class VoteVerificator
     
     public function checkValidity($votes, $resolutionProject)
     {
-        if ($votes->count() > $this->userRepository->countAllOrganizationMembers($resolutionProject->getOrganization()->getId()) / 2) {
+//        dd($resolutionProject->getOrganization()->getId(), $resolutionProject->getTargetGroup());
+        $projectId = $resolutionProject->getOrganization()->getId();
+        $targeGroup = $resolutionProject->getTargetGroup();
+        if ($votes->count() > $this->userRepository->countAllOrganizationMembers($projectId, $targeGroup) / 2) {
             return true;
         }
         return false;

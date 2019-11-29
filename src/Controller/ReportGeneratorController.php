@@ -64,7 +64,9 @@ class ReportGeneratorController extends CRUDController
                 'votes'             => $votes,
                 'verification'      => $voteVerification,
                 'resolutionProject' => $resolutionProject,
-                'comments'          => $comments
+                'comments'          => $comments,
+                'logo'              => $resolutionProject->getOrganization()->getLogo(),
+                'footer'            => $resolutionProject->getOrganization()->getFooter()
             ],
             'Raport'
         );
@@ -102,6 +104,8 @@ class ReportGeneratorController extends CRUDController
         $this->pdfCreator->generatePdf(
             'resolution/resolution.html.twig',
             [
+                'logo'       => $resolution->getResolutionProject()->getOrganization()->getLogo(),
+                'footer'     => $resolution->getResolutionProject()->getOrganization()->getFooter(),
                 'resolution' => $resolution
             ],
             'Uchwała'

@@ -69,6 +69,11 @@ class ResolutionProject
      */
     private $targetGroup;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Resolution", inversedBy="resolutionProject", cascade={"persist", "remove"})
+     */
+    private $resolution;
+
     public function __construct()
     {
         $this->votes = new ArrayCollection();
@@ -241,6 +246,18 @@ class ResolutionProject
     public function setTargetGroup(string $targetGroup): self
     {
         $this->targetGroup = $targetGroup;
+
+        return $this;
+    }
+
+    public function getResolution(): ?Resolution
+    {
+        return $this->resolution;
+    }
+
+    public function setResolution(?Resolution $resolution): self
+    {
+        $this->resolution = $resolution;
 
         return $this;
     }

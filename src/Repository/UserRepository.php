@@ -60,14 +60,38 @@ class UserRepository extends ServiceEntityRepository
         return $result;
     }
     
-    public function countAllOrganizationMembers(int $organizationId): int
+    public function countAllOrganizationMembers(int $organizationId, string $role): int
     {
-        return $this->createQueryBuilder('user')
-            ->select('count(user)')
-            ->leftJoin('user.organization', 'organization')
-            ->andWhere('organization.id = :id')
-            ->setParameter('id', $organizationId)
-            ->getQuery()
-            ->getSingleScalarResult();
+        $users = $this->findBy(['organization' => $organizationId]);
+        $board = [];
+    
+        foreach ($users as $user) {
+            if (in_array('ROLE_BOARD',$user->getRoles())) {
+                $board[] = $user->getId();
+            }
+        }
+        
+        if ($role == "ROLE_BOARD") {
+            return $this->createQueryBuilder('user')
+                        ->select('count(user)')
+                        ->leftJoin('user.organization', 'organization')
+                        ->andWhere('organization.id = :id')
+                        ->andWhere('user.id IN (:board)')
+                        ->setParameter('id', $organizationId)
+                        ->setParameter('board', $board)
+                        ->getQuery()
+                        ->getSingleScalarResult();
+            
+        } else {
+            return $this->createQueryBuilder('user')
+                        ->select('count(user)')
+                        ->leftJoin('user.organization', 'organization')
+                        ->andWhere('organization.id = :id')
+                        ->setParameter('id', $organizationId)
+                        ->getQuery()
+                        ->getSingleScalarResult();
+        }
+        
+       
     }
 }

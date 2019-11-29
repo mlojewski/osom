@@ -8,6 +8,7 @@ sonata_admin:
                     - App\Admin\ResolutionProjectAdmin
                     - App\Admin\BoardMemberFunctionAdmin
                     - App\Admin\VoteTypeAdmin
+                    - App\Admin\OrganizationAdmin
                 roles: [ROLE_ADMIN]
             user:
                 label: Panel użytkowników

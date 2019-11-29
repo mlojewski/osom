@@ -15,9 +15,22 @@
 		text-align: center;
 		font-size: 14px;
 	}
+	.header {
+		padding: 10px;
+	}
+	.footer {
+		position: fixed;
+		bottom: 10px;
+	}
+	/*TODO = źle liczy ważność głosowań - nie bierze pod uwagę do quorum czy tylko zarząd czy też wszyscy*/
 </style>
 	</head>
 	<body>
+<div class="header">
+	<img height="100" alt = "v" src="../public/{% path logo, 'reference'%}">
+
+</div>
+
 <p class="myHeadline">
  <b>Uchwała nr {{ resolution.number }} z dnia {{ resolution.date | date('d-m-Y')}}. </b><br/>
 <br/>
@@ -35,5 +48,9 @@
 	Sekretarz Generalny:<br>
 	<br>
 	......................................
+
+	<div class="footer">
+		<img width="100%" alt = "v" src="../public/{% path footer, 'reference'%}">
+	</div>
 </body>
 </html>
