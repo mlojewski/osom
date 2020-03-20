@@ -30,7 +30,7 @@ class Mailer
         
         foreach ($members as $member) {
             $message = (new TemplatedEmail())
-                ->from('example@example.com')
+                ->from('kontakt@easyvote.pl')
                 ->to($member)
                 ->subject('Nowy projekt uchwały')
                 ->htmlTemplate('emails/new_project_email.html.twig')
@@ -47,5 +47,17 @@ class Mailer
                 $this->mailerInterface->send($message);
             }
         }
+    }
+    
+    public function sendPasswordReset(string $email, string $token)
+    {
+        $message = (new TemplatedEmail())
+            ->from('kontakt@easyvote.pl')
+            ->to($email)
+            ->subject('Reset hasła w portalu easyvote')
+            ->htmlTemplate('emails/password_reset.html.twig')
+            ->context(['token' => $token]);
+
+        $this->mailerInterface->send($message);
     }
 }

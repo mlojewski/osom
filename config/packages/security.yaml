@@ -4,11 +4,10 @@ security:
     encoders:
         App\Entity\User:
             algorithm: argon2i
-
         
     role_hierarchy:
-        ROLE_ORGANIZATION: [ROLE_USER]
-        ROLE_ADMIN:        [ROLE_USER, ROLE_ORGANIZATION]
+        ROLE_BOARD:        [ROLE_USER]
+        ROLE_ADMIN:        [ROLE_USER, ROLE_ORGANIZATION, ROLE_SUPER_ADMIN, ROLE_BOARD]
         ROLE_SUPER_ADMIN:  [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH, ROLE_ORGANIZATION]
 
     firewalls:
@@ -29,7 +28,7 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ORGANIZATION}
+        - { path: ^/admin/, role: ROLE_BOARD}
         - { path: ^/comment/, role: ROLE_USER }
         - { path: ^/vote/, role: ROLE_USER }
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
