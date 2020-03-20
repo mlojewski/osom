@@ -1,11 +1,11 @@
 sonata_admin:
+    
     title: 'OSOM'
     dashboard:
         groups:
             base:
                 label: Panel administracyjny
                 items:
-                    - App\Admin\ResolutionProjectAdmin
                     - App\Admin\BoardMemberFunctionAdmin
                     - App\Admin\VoteTypeAdmin
                     - App\Admin\OrganizationAdmin
@@ -14,7 +14,8 @@ sonata_admin:
                 label: Panel użytkowników
                 items:
                     - App\Admin\UserAdmin
-                roles: [ROLE_ADMIN]
+                    - App\Admin\ResolutionProjectAdmin
+                roles: [ROLE_ADMIN, ROLE_BOARD]
         blocks:
             - { type: sonata.admin.block.admin_list, position: left }
 
