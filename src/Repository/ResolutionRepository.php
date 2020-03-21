@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Resolution;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
