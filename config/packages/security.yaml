@@ -3,7 +3,7 @@ security:
     
     encoders:
         App\Entity\User:
-            algorithm: argon2i
+            algorithm: bcrypt
         
     role_hierarchy:
         ROLE_BOARD:        [ROLE_USER]
