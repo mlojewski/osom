@@ -18,7 +18,9 @@ sonata_admin:
                 roles: [ROLE_ADMIN, ROLE_BOARD]
         blocks:
             - { type: sonata.admin.block.admin_list, position: left }
-
+    templates:
+        user_block: admin/user_block.html.twig
+        
 sonata_block:
     blocks:
         sonata.admin.block.admin_list:
