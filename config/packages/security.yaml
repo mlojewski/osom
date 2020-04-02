@@ -7,8 +7,8 @@ security:
         
     role_hierarchy:
         ROLE_BOARD:        [ROLE_USER]
-        ROLE_ADMIN:        [ROLE_USER, ROLE_ORGANIZATION, ROLE_SUPER_ADMIN, ROLE_BOARD]
-        ROLE_SUPER_ADMIN:  [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH, ROLE_ORGANIZATION]
+        ROLE_ADMIN:        [ROLE_USER, ROLE_ORGANIZATION, ROLE_BOARD, ROLE_SONATA_ADMIN]
+        ROLE_SUPER_ADMIN:  [ROLE_ADMIN]
 
     firewalls:
         dev:
@@ -21,7 +21,8 @@ security:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
             logout:
-                path: logout
+                path: /admin/logout
+                target: /login
 
     access_control:
         - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
