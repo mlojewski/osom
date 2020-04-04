@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<title>Resolution</title>
 
 <style>
 	*{ font-family: DejaVu Sans; font-size: 12px;}
@@ -32,7 +31,7 @@
 </div>
 
 <p class="myHeadline">
- <b>Uchwała nr {{ resolution.number }} z dnia {{ resolution.date | date('d-m-Y')}}. </b><br/>
+ <b>{% trans %}Resolution no{% endtrans %} : {{ resolution.number }} {% trans %}of{% endtrans %} {{ resolution.date | date('d-m-Y')}}. </b><br/>
 <br/>
 </p>
 <p class="myTitle">
@@ -45,7 +44,7 @@
 
 
 
-	Sekretarz Generalny:<br>
+	{% trans %}General secretary{% endtrans %}<br>
 	<br>
 	......................................
 

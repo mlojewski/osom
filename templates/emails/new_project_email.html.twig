@@ -9,29 +9,29 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Projekt uchwały nr {{ project.number }} </h1> <br/>
+    <h1>{% trans %}Draft resolution no{% endtrans %}:{{ project.number }} </h1> <br/>
 
     <h2>{{ project.title }}</h2>
     <br>
-    <h5><u>  Treść projektu </u></h5> <br/>
+    <h5><u>  {% trans %}Draft resolution content{% endtrans %} </u></h5> <br/>
 
     <h4>{{ project.content | raw }}</h4><br/>
 
-    Deadline głosowania: {{ project.deadline|date('Y-m-d h:i:s') }}<br/>
+    {% trans %}Voting deadline{% endtrans %}{{ project.deadline|date('Y-m-d h:i:s') }}<br/>
 
     <a href="{{ url('vote_create', {projectId: projectId, memberId: member, voteTypeId: 1}) }}">
-        <button class="btn btn-success"> Za</button>
+        <button class="btn btn-success"> {% trans %}For{% endtrans %}</button>
     </a>
     <a href="{{ url('vote_create', {projectId: projectId, memberId: member, voteTypeId: 2}) }}">
-        <button class="btn btn-danger"> Przeciw</button>
+        <button class="btn btn-danger"> {% trans %}Against{% endtrans %}</button>
     </a>
     <a href="{{ url('vote_create', {projectId: projectId, memberId: member, voteTypeId: 3}) }}">
-        <button class="btn btn-info"> Wstrzymuję się</button>
+        <button class="btn btn-info"> {% trans %}Abstain{% endtrans %}</button>
     </a>
     <br>
     <br>
     <a href="{{ url('comment_form', {projectId: projectId, authorId: member}) }}">
-        <button class="btn btn-warning"> Dodaj komentarz</button>
+        <button class="btn btn-warning"> {% trans %}Add comment{% endtrans %}</button>
     </a>
 
 </div>

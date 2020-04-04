@@ -2,10 +2,10 @@
 
 {% block body %}
 
-	{{ comment.commentAuthor.name}} {{ comment.commentAuthor.lastName }} dodał nowy komentarz: <br>
+	{{ comment.commentAuthor.name}} {{ comment.commentAuthor.lastName }} {% trans %} has added a new comment{% endtrans %}: <br>
 	{{ comment.content }}<br>
 	<br>
 	<a href="{{ url('comment_form', {projectId: projectId, authorId: member}) }}">
-		<button class="btn btn-warning"> Odpowiedz</button>
+		<button class="btn btn-warning"> {% trans %}Reply{% endtrans %}</button>
 	</a>
 {% endblock %}

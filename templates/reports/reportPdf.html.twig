@@ -26,35 +26,35 @@
 
 </style>
 <p style="text-align: center">
-	Raport z głosowania nad projektem <b>{{ resolutionProject.number }}</b>. Deadline głosowania - {{ resolutionProject.deadline | date('Y-m-d H:i:s') }} <br>
+	{% trans %}Voting report for draft resolution no{% endtrans %} <b>{{ resolutionProject.number }}</b>. {% trans %}Voting deadline {% endtrans %} - {{ resolutionProject.deadline | date('Y-m-d H:i:s') }} <br>
 </p>
 
 
 	{% if verification != null %}
-		Głosowanie zakończone sukcesem. Wynik głosowania:
-		{% if verification > 0 %} <u>Projekt przeszedł</u> {% elseif verification < 0 %} <u>Projekt nie przeszedł </u> {% endif %}
+		{% trans %}Voting was successful and resulted in{% endtrans %} : <br>
+		{% if verification > 0 %} <u>{% trans %}The resolution was passed{% endtrans %}</u> {% elseif verification < 0 %} <u>{% trans %}The resolution was rejected{% endtrans %}ł </u> {% endif %}
 
 		{% else %}
-		Głosowanie nieważne.
+			{% trans %}The voting was unsuccessful{% endtrans %}.
 	{% endif %}
 
-<br>Oddane głosy:
+<br>{% trans %}The following votes were issued{% endtrans %}:
 	<table>
 		<tr>
 			<th>
-				Typ głosu
+				{% trans %}Vote type{% endtrans %}
 			</th>
 			<th>
-				Data oddania
+				{% trans %}Time of issuing{% endtrans %}
 			</th>
 			<th>
-				Autor
+				{% trans %}Author{% endtrans %}
 			</th>
 			<th>
-				Funkcja
+				{% trans %}Function{% endtrans %}
 			</th>
 			<th>
-				IP autora
+				{% trans %}Author IP{% endtrans %}
 			</th>
 		</tr>
 		{% for vote in votes %}
@@ -67,17 +67,17 @@
 			</tr>
 		{% endfor %}
 	</table>
-		Komentarze:<br/>
+		{% trans %}Comments{% endtrans %} :<br/>
 		<table>
 			<tr>
 				<th>
-					Data dodania
+					{% trans %}Time of issuing{% endtrans %}
 				</th>
 				<th>
-					Treść
+					{% trans %}Content{% endtrans %}
 				</th>
 				<th>
-					Autor
+					{% trans %}Author{% endtrans %}
 				</th>
 			</tr>
 			{% for comment in comments %}

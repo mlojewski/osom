@@ -8,12 +8,12 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Projekt uchwały nr {{ resolutionProject.number }} utworzony {{ date }}</h1>
+    <h1>{% trans %}Draft resolution no{% endtrans %}: {{ resolutionProject.number }} {% trans %}Created at{% endtrans %} : {{ date }}</h1>
 
-    <h2>  Treść projektu </h2>
+    <h2>  {% trans %}Draft resolution content{% endtrans %} :</h2>
 
     <h4>{{ resolutionProject.content }}<br/>
-    Deadline głosowania: {{ deadline }}
+        {% trans %}Voting deadline{% endtrans %} : {{ deadline }}
     </h4>
 
 </div>
