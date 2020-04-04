@@ -3,14 +3,14 @@
 {% block body %}
 
 <form method="post" action="">
-<label for="email">Podaj email</label>
+<label for="email">{% trans %}Enter email{% endtrans %}</label>
 <input type="text" id="email" name="email">
 	<br>
-<input type="submit" value="Wyślij">
+<input type="submit" value="{% trans %}Send{% endtrans %}">
 </form>
 
 	{% if message %}
 		{{ message }} <br>
-		<a href="/login"> Przejdź do strony logowania</a>
+		<a href="/login"> {% trans %}Go to login page{% endtrans %}</a>
 	{% endif %}
 {% endblock %}

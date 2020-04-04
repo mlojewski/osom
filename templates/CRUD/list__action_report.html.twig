@@ -1,4 +1,4 @@
 {%  if object.deadline < date() %}
-<a class="btn btn-success" href="{{ admin.generateObjectUrl('generateReport', object) }}" target="_blank" >Generuj raport</a>
+<a class="btn btn-success" href="{{ admin.generateObjectUrl('generateReport', object) }}" target="_blank" >{% trans %}Generate report{% endtrans %}</a>
 {% endif %}
 

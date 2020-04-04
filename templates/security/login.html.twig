@@ -22,7 +22,7 @@
         <h1 class="h3 mb-3 font-weight-normal">{% trans %}Login panel {% endtrans %}</h1>
         <label for="inputEmail" class="sr-only">Email</label>
         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus >
-        <label for="inputPassword" class="sr-only">Password</label>
+        <label for="inputPassword" class="sr-only">{% trans %}Password{% endtrans %}</label>
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="{% trans %}Password {% endtrans %}" required>
 
         <input type="hidden" name="_csrf_token"

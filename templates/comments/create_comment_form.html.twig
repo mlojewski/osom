@@ -14,7 +14,7 @@
 </style>
 
 		<label class="moj-textarea">
-			<textarea name="content" cols="50" rows="4" placeholder="Wpisz komentarz" form="new_comment"></textarea>
+			<textarea name="content" cols="50" rows="4" placeholder="{% trans %}Add comment{% endtrans %}" form="new_comment"></textarea>
 		</label>
 	<form class="moj-form" id="new_comment" method="post" action="{{ url('comment_create', {authorId: authorId, projectId: projectId}) }}">
 		<input type="hidden" name="authorId" value="{{ authorId }}"/>
@@ -24,7 +24,7 @@
 
 	<br>
 	<p>
-	<a href="{{ path('logout') }}">Wyloguj</a>
+	<a href="{{ path('logout') }}">{% trans %}Log out{% endtrans %}</a>
 	</p>
 
 
