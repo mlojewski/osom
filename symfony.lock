@@ -433,6 +433,18 @@
             "public/upload/media/.gitignore"
         ]
     },
+    "sonata-project/translation-bundle": {
+        "version": "2.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.3",
+            "ref": "65f0e544ca19d262268e1f1ce2b4cbbe459a4a97"
+        },
+        "files": [
+            "config/packages/sonata_translation.yaml"
+        ]
+    },
     "squizlabs/php_codesniffer": {
         "version": "3.0",
         "recipe": {
@@ -853,6 +865,9 @@
         "files": [
             "config/packages/twig_extensions.yaml"
         ]
+    },
+    "twig/intl-extra": {
+        "version": "v3.0.3"
     },
     "twig/twig": {
         "version": "v2.10.0"

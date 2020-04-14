@@ -28,4 +28,5 @@ return [
     Sonata\EasyExtendsBundle\SonataEasyExtendsBundle::class => ['all' => true],
     JMS\SerializerBundle\JMSSerializerBundle::class => ['all' => true],
     Sonata\MediaBundle\SonataMediaBundle::class => ['all' => true],
+    Sonata\TranslationBundle\SonataTranslationBundle::class => ['all' => true],
 ];
