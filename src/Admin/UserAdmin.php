@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -70,6 +71,18 @@ class UserAdmin extends AbstractAdmin
                     'choice_label' => 'name'
                 ]
             )
+                ->add(
+                    'roles',
+                    ChoiceType::class,
+                    [
+                        'choices' => [
+                            'user'  => "ROLE_USER",
+                            'admin' => "ROLE_ADMIN",
+                        ],
+                        'label' => 'Rola',
+                        'multiple' => true
+                    ]
+                )
             ;
         }
         
