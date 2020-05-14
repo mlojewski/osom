@@ -20,6 +20,7 @@ sonata_admin:
             - { type: sonata.admin.block.admin_list, position: left }
     templates:
         user_block: admin/user_block.html.twig
+        layout: admin/main.html.twig
         
 sonata_block:
     blocks:
