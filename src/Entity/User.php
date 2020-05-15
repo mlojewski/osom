@@ -73,6 +73,11 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $token;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isDecider;
     
 
     public function __construct()
@@ -283,6 +288,18 @@ class User implements UserInterface
     public function setToken(?string $token): self
     {
         $this->token = $token;
+
+        return $this;
+    }
+
+    public function getIsDecider(): ?bool
+    {
+        return $this->isDecider;
+    }
+
+    public function setIsDecider(?bool $isDecider): self
+    {
+        $this->isDecider = $isDecider;
 
         return $this;
     }

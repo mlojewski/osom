@@ -94,14 +94,16 @@ class ReportGeneratorController extends CRUDController
             $resolution->setDate($resolutionProject->getDeadline());
             $resolution->setContent($resolutionProject->getContent());
             $resolution->setTitle($resolutionProject->getTitle());
-
+            $resolution->setResolutionProject($resolutionProject);
+            
             $this->entityManager->persist($resolution);
             $this->entityManager->flush();
         } else {
             $resolution = $this->resolutionRepository->findOneBy(['title' => $resolutionProject->getTitle()]);
         }
-        
+
         $this->pdfCreator->generatePdf(
+           
             'resolution/resolution.html.twig',
             [
                 'logo'       => $resolution->getResolutionProject()->getOrganization()->getLogo(),

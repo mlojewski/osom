@@ -28,6 +28,11 @@ class VoteType
      */
     private $votes;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $value;
+
     public function __construct()
     {
         $this->votes = new ArrayCollection();
@@ -77,6 +82,18 @@ class VoteType
                 $vote->setVoteType(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getValue(): ?int
+    {
+        return $this->value;
+    }
+
+    public function setValue(int $value): self
+    {
+        $this->value = $value;
 
         return $this;
     }
