@@ -27,7 +27,7 @@ class BoardMemberFunction
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="function")
      */
     private $users;
-
+    
     public function __construct()
     {
         $this->users = new ArrayCollection();

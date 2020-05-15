@@ -5,6 +5,7 @@ namespace App\Admin;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class VoteTypeAdmin extends AbstractAdmin
@@ -20,6 +21,13 @@ class VoteTypeAdmin extends AbstractAdmin
                     'label' => 'Typ głosu'
                 ]
             )
+            ->add(
+                'value',
+                IntegerType::class,
+                [
+                    'label' => 'wartość'
+                ]
+            )
         ;
     }
     protected function configureListFields(ListMapper $listMapper)
@@ -30,6 +38,13 @@ class VoteTypeAdmin extends AbstractAdmin
                 null,
                 [
                     'label' => 'Typ'
+                ]
+            )
+            ->add(
+                'value',
+                null,
+                [
+                    'label' => 'Wartość'
                 ]
             )
         ;

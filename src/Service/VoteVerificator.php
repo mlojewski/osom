@@ -26,9 +26,9 @@ class VoteVerificator
         if ($this->checkValidity($votes, $resolutionProject) == true) {
             $voteResult = 0;
             foreach ($votes as $vote) {
-                if ($vote->getVoteType()->getType() === "Za") {
+                if ($vote->getVoteType()->getValue() === 1) {
                     $voteResult+=$this->checkVoteAuthor($vote);
-                } elseif ($vote->getVoteType()->getType() === "Przeciw") {
+                } elseif ($vote->getVoteType()->getValue() === -1) {
                     $voteResult-=$this->checkVoteAuthor($vote);
                 };
             }
@@ -40,7 +40,7 @@ class VoteVerificator
     
     public function checkValidity($votes, $resolutionProject)
     {
-//        dd($resolutionProject->getOrganization()->getId(), $resolutionProject->getTargetGroup());
+
         $projectId = $resolutionProject->getOrganization()->getId();
         $targeGroup = $resolutionProject->getTargetGroup();
         if ($votes->count() > $this->userRepository->countAllOrganizationMembers($projectId, $targeGroup) / 2) {
@@ -51,7 +51,7 @@ class VoteVerificator
     
     public function checkVoteAuthor($vote): float
     {
-        if ($vote->getVoteAuthor()->getFunction()->getId() === 1) {
+        if ($vote->getVoteAuthor()->getIsDecider() === true) {
             return 1.1;
         }
         return 1;

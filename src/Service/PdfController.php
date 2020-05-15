@@ -24,8 +24,9 @@ class PdfController extends AbstractController
         $domPdf->loadHtml($html);
 
         $domPdf->setPaper('A4', 'portrait');
+      
         $domPdf->render();
-    
+
         $domPdf->stream(
             $name.'.pdf',
             [

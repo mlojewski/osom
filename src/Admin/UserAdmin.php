@@ -62,7 +62,20 @@ class UserAdmin extends AbstractAdmin
                     'class' => BoardMemberFunction::class,
                     'choice_label' => 'name'
                 ]
-            );
+            )
+        -> add(
+            'isDecider',
+            ChoiceType::class,
+            [
+                'label' => 'Głos decydujący',
+                'choices' => [
+                    'tak' => true,
+                    'nie' => false,
+                    'nd' => null
+                ]
+            ]
+        )
+        ;
         if (in_array('ROLE_SUPER_ADMIN', $this->tokenStorage->getToken()->getUser()->getRoles())){
             $formMapper->add('organization',
                 EntityType::class,
