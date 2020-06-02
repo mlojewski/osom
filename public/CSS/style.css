@@ -75,7 +75,11 @@ text-indent:0;
     position: absolute;
     bottom: 4vw;
     right: 13vh;
-}.btn:hover {
+}
+span {
+	text-align: center;
+}
+.btn:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64) );
 
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64');
