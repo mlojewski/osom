@@ -3,49 +3,37 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <style>
-        .moj-form {
-            width: 50%;
-            position: relative;
-            padding: 40px;
-        }
-        .remember {
-            padding: 10px;
-        }
-    </style>
-    <img src="{{ asset('upload/media/2.png') }}" alt="dupa" style="position: absolute; right: 0">
-<p>
 
+    <p>
     <form class="moj-form" method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
         <h1 class="h3 mb-3 font-weight-normal">{% trans %}Login panel {% endtrans %}</h1>
-        <label for="inputEmail" class="sr-only">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus >
-        <label for="inputPassword" class="sr-only">{% trans %}Password{% endtrans %}</label>
+
+        <label for="inputEmail" class="sr-only">Email</label><br>
+
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus> <br><br>
+        <label for="inputPassword" class="sr-only">{% trans %}Password{% endtrans %}</label><br>
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="{% trans %}Password {% endtrans %}" required>
-
         <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
-        >
-
-        <div class="checkbox mb-3">
-            <label class="remember">
-                <input  type="checkbox" name="_remember_me"> {% trans %}Remember me {% endtrans %}
-            </label>
-        </div>
-
+               value="{{ csrf_token('authenticate') }}" >
+        <span class="checkbox mb-3">
+                <label class="remember">
+                    <input  type="checkbox" name="_remember_me"> {% trans %}Remember me {% endtrans %}
+                </label>
+            </span>
+{#        <br><br>#}
         <div>
             <a href="/resetting">{% trans %}Password reset {% endtrans %}</a>
         </div>
+
         <button class="btn btn-lg btn-primary" type="submit">
-            {% trans %}Log in {% endtrans %}
+            <span>{% trans %}Log in{% endtrans %}</span>
         </button>
+        <img class="picture" src="https://easyvote.pl/wp-content/uploads/2019/11/EasyVotelogo-pełne.png" alt="obrazek" style="position: absolute; top: 0px; right: 0px; padding: 20px; width:13vw;">
     </form>
-
-
-</p>
-    <p style="padding: 20px"><a href="{% trans %}https://easyvote.pl/en/homee/{% endtrans %}">{% trans %}Return to home page {% endtrans %}</a> </p>
+    </p>
+    <p class="return" ><a href="{% trans %}https://easyvote.pl/en/homee/{% endtrans %}"style="color:#FFCC00" >{% trans %}Return to home page {% endtrans %}</a> </p>
 {% endblock %}
